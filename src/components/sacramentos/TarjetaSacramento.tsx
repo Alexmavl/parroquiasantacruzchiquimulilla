@@ -31,7 +31,7 @@ export function TarjetaSacramento({ def, nivel = 2 }: Props): ReactElement {
     <div className="tarjeta-sacramento group w-full flex flex-col justify-between">
       <Link to={`/sacramentos/${def.slug}`} className="flex flex-col gap-2.5 flex-1 no-underline text-inherit">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-oro-500 border border-oro-200/80 transition-all duration-300 group-hover:bg-marino-700 group-hover:text-oro-400 group-hover:border-marino-700 group-hover:shadow-sm">
+          <div className="badge-icono-liturgico flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-oro-500 border border-oro-200/80 group-hover:bg-marino-700 group-hover:text-oro-400 group-hover:border-marino-700">
             <IconoLiturgico slug={def.icono} size={24} />
           </div>
           <Titulo className="text-base sm:text-lg font-serif font-semibold text-marino-800 transition-colors duration-200 group-hover:text-marino-900 leading-snug">

@@ -276,16 +276,27 @@
   }
   .tarjeta-sacramento svg {
     color: var(--color-oro-500);
-    transition: all 300ms ease;
+    transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .tarjeta-sacramento:hover svg {
     color: var(--color-oro-400);
-    transform: scale(1.06);
+    transform: scale(1.15) translateY(-1px);
+    filter: drop-shadow(0 2px 6px rgba(234, 179, 8, 0.35));
   }
   .tarjeta-sacramento h2,
   .tarjeta-sacramento h3 {
     font-size: 1.25rem;
     color: var(--color-marino-800);
+  }
+
+  /* Animación suave para contenedor de icono litúrgico */
+  .badge-icono-liturgico {
+    transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .tarjeta-sacramento:hover .badge-icono-liturgico,
+  .badge-icono-liturgico:hover {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 4px 14px -1px rgba(234, 179, 8, 0.25);
   }
 
   /* Panel de modalidad relacionada */

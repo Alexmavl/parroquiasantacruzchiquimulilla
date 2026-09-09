@@ -27,8 +27,8 @@ function Encabezado({
   return (
     <header className="space-y-4">
       <div className="flex items-center gap-4">
-        <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-oro-500 border border-oro-200/80 shadow-xs">
-          <IconoLiturgico slug={icono} size={32} />
+        <div className="badge-icono-liturgico flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-oro-500 border border-oro-200/80 shadow-xs cursor-default hover:bg-marino-700 hover:text-oro-400 hover:border-marino-700">
+          <IconoLiturgico slug={icono} size={32} className="transition-transform duration-300 hover:scale-110" />
         </div>
         <div>
           <h1 className="text-marino-800">{nombre}</h1>
