@@ -19,7 +19,19 @@ export const libros = LibrosSchema.parse(librosRaw)
 export const horarios = HorariosSchema.parse(horariosRaw)
 export const parroquia = ParroquiaSchema.parse(parroquiaRaw)
 
-// --- Ubicación y "cómo llegar" (reutilizable: parroquia y comunidades) -------
+/**
+ * Resuelve rutas de archivos estáticos (imágenes en /public) tomando en cuenta el base path de GitHub Pages.
+ */
+export function resolveAsset(path?: string): string | undefined {
+  if (!path) return undefined
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
+    return path
+  }
+  const base = import.meta.env.BASE_URL || '/'
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  const cleanBase = base.endsWith('/') ? base : `${base}/`
+  return `${cleanBase}${cleanPath}`
+}
 
 export interface DatosUbicacion {
   direccion?: string

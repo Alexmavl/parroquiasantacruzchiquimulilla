@@ -12,6 +12,7 @@ import {
   hayUbicacionParroquia,
   historiaIntro,
   parroquia,
+  resolveAsset,
 } from '../lib/content'
 
 export function Inicio(): ReactElement {
@@ -70,7 +71,7 @@ export function Inicio(): ReactElement {
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
               <div className="relative group w-full max-w-md lg:max-w-none">
                 <img
-                  src={parroquia.foto}
+                  src={resolveAsset(parroquia.foto)}
                   alt={parroquia.fotoPie ?? 'Templo de la Parroquia Santa Cruz de Chiquimulilla'}
                   className="w-full h-auto max-h-[480px] rounded-2xl object-contain shadow-xl shadow-slate-900/10 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-marino-950/20"
                 />

@@ -6,7 +6,7 @@ import { Seo } from '../../../components/Seo'
 import { Ubicacion } from '../../../components/Ubicacion'
 import { BotonWhatsApp } from '../../../components/ui/BotonWhatsApp'
 import { Migas } from '../../../components/ui/Migas'
-import { comunidades, getComunidad } from '../../../lib/content'
+import { comunidades, getComunidad, resolveAsset } from '../../../lib/content'
 import { enlaceGeneral } from '../../../lib/whatsapp'
 import { NoEncontrado } from '../../../pages/NoEncontrado'
 
@@ -53,7 +53,7 @@ export function ComunidadDetalle(): ReactElement {
       {c.foto && (
         <div>
           <img
-            src={c.foto}
+            src={resolveAsset(c.foto)}
             alt={c.fotoPie ?? `Templo de ${c.nombre}`}
             loading="lazy"
             className="w-full rounded-2xl object-cover max-h-[480px] shadow-xl shadow-slate-900/10 transition-transform duration-500 hover:scale-[1.01]"

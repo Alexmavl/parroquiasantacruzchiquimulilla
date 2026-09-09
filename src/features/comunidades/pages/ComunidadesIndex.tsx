@@ -3,7 +3,7 @@ import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo } from '../../../components/Seo'
 import { Migas } from '../../../components/ui/Migas'
-import { comunidades } from '../../../lib/content'
+import { comunidades, resolveAsset } from '../../../lib/content'
 
 /** Primer párrafo de la descripción, para el resumen de la tarjeta. */
 function resumen(descripcion: string): string {
@@ -48,7 +48,7 @@ export function ComunidadesIndex(): ReactElement {
                 {c.foto && (
                   <div className="overflow-hidden aspect-[3/2] w-full bg-marino-50">
                     <img
-                      src={c.foto}
+                      src={resolveAsset(c.foto)}
                       alt={c.fotoPie ?? `Templo de ${c.nombre}`}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
