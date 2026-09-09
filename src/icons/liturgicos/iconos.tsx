@@ -8,6 +8,7 @@ import type { ReactNode } from 'react'
  * wrapper es siempre `aria-hidden` y nunca expone `aria-label`.
  */
 export type SlugIcono =
+  | 'cruz'
   | 'bautizo'
   | 'primera-comunion'
   | 'confirmacion'
@@ -18,6 +19,12 @@ export type SlugIcono =
   | 'plan-pastoral'
 
 export const ICONOS_POR_SLUG: Record<SlugIcono, ReactNode> = {
+  cruz: (
+    <>
+      <path d="M12 2v20M5 7.5h14" />
+      <path d="M9.5 2h5M9.5 22h5M5 5v5M19 5v5" strokeWidth={1.2} />
+    </>
+  ),
   bautizo: (
     <>
       <path d="M4.5 12.5a7.5 7.5 0 0 1 15 0z" />

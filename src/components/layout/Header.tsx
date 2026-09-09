@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState, type ReactElement } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { IconoLiturgico } from '../../icons/liturgicos/IconoLiturgico'
 
 const ENLACES = [
   { to: '/', nombre: 'Inicio', end: true },
@@ -41,15 +42,20 @@ export function Header(): ReactElement {
         <div className="flex items-center justify-between">
           <NavLink
             to="/"
-            className="group flex flex-col no-underline focus-visible:outline focus-visible:outline-white"
+            className="group flex items-center gap-2.5 sm:gap-3 no-underline focus-visible:outline focus-visible:outline-white"
             onClick={() => setAbierto(false)}
           >
-            <span className="font-serif text-xl sm:text-2xl font-normal text-white transition-colors duration-200 group-hover:text-oro-300">
-              Parroquia Santa Cruz
-            </span>
-            <span className="text-xs sm:text-sm text-marino-200 font-sans tracking-wide">
-              Chiquimulilla, Santa Rosa
-            </span>
+            <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border border-oro-500/40 bg-marino-800/80 text-oro-400 shadow-xs transition-all duration-300 group-hover:scale-105 group-hover:border-oro-400 group-hover:bg-marino-800 group-hover:text-oro-300 group-hover:shadow-md group-hover:shadow-oro-500/20">
+              <IconoLiturgico slug="cruz" size={26} className="transition-transform duration-300 group-hover:rotate-3" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif text-xl sm:text-2xl font-normal text-white transition-colors duration-200 group-hover:text-oro-300 leading-tight">
+                Parroquia Santa Cruz
+              </span>
+              <span className="text-xs sm:text-sm text-marino-200 font-sans tracking-wide">
+                Chiquimulilla, Santa Rosa
+              </span>
+            </div>
           </NavLink>
 
           {/* Botón menú hamburguesa (móvil) */}
