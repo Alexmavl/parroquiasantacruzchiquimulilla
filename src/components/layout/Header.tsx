@@ -42,12 +42,33 @@ export function Header(): ReactElement {
         <div className="flex items-center justify-between">
           <NavLink
             to="/"
-            className="group flex items-center gap-2.5 sm:gap-3 no-underline focus-visible:outline focus-visible:outline-white"
+            className="group flex items-center gap-2.5 sm:gap-3.5 no-underline focus-visible:outline focus-visible:outline-white"
             onClick={() => setAbierto(false)}
           >
-            <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border border-oro-500/40 bg-marino-800/80 text-oro-400 shadow-xs transition-all duration-300 group-hover:scale-105 group-hover:border-oro-400 group-hover:bg-marino-800 group-hover:text-oro-300 group-hover:shadow-md group-hover:shadow-oro-500/20">
-              <IconoLiturgico slug="cruz" size={26} className="transition-transform duration-300 group-hover:rotate-3" />
+            {/* Contenedor con efecto de resplandor / brillo aureola */}
+            <div className="relative flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center">
+              {/* Aura dorada / halo de luz difusa detrás */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-2xl bg-radial from-oro-400/40 via-oro-500/20 to-transparent blur-md transition-all duration-500 group-hover:scale-125 group-hover:from-oro-400/60 group-hover:via-oro-500/35"
+              />
+
+              {/* Insignia con degradado interno y borde iluminado */}
+              <div className="relative flex h-full w-full items-center justify-center rounded-2xl border border-oro-400/50 bg-gradient-to-br from-marino-800 via-marino-900 to-marino-950 text-oro-400 shadow-[0_0_15px_rgba(234,179,8,0.25)] ring-1 ring-white/10 transition-all duration-300 group-hover:scale-105 group-hover:border-oro-300 group-hover:text-oro-300 group-hover:shadow-[0_0_22px_rgba(250,204,21,0.5)]">
+                {/* Reflejo de luz diagonal superior */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -top-1 -right-1 h-5 w-5 rounded-full bg-white/20 blur-xs"
+                />
+
+                <IconoLiturgico
+                  slug="cruz"
+                  size={26}
+                  className="relative drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
             </div>
+
             <div className="flex flex-col">
               <span className="font-serif text-xl sm:text-2xl font-normal text-white transition-colors duration-200 group-hover:text-oro-300 leading-tight">
                 Parroquia Santa Cruz

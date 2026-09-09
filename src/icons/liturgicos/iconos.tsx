@@ -21,8 +21,44 @@ export type SlugIcono =
 export const ICONOS_POR_SLUG: Record<SlugIcono, ReactNode> = {
   cruz: (
     <>
-      <path d="M12 2v20M5 7.5h14" />
-      <path d="M9.5 2h5M9.5 22h5M5 5v5M19 5v5" strokeWidth={1.2} />
+      {/* Resplandor / destellos de fondo */}
+      <path
+        d="M12 4.5l1.2 2.8 2.8 1.2-2.8 1.2L12 12.5l-1.2-2.8L8 8.5l2.8-1.2z"
+        fill="currentColor"
+        fillOpacity={0.15}
+        stroke="none"
+      />
+      <path
+        d="M6 2.5l6 6M18 2.5l-6 6M6 14.5l6-6M18 14.5l-6-6"
+        stroke="currentColor"
+        strokeWidth={1}
+        strokeOpacity={0.45}
+        strokeDasharray="1 2.5"
+      />
+      {/* Cuerpo principal de la Santa Cruz */}
+      <path
+        d="M12 1.5v21M4.5 8.5h15"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+      {/* Remates ornamentales en los extremos */}
+      <path
+        d="M9.5 1.5h5M9.5 22.5h5M4.5 6v5M19.5 6v5"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      {/* Resplandor central */}
+      <circle
+        cx="12"
+        cy="8.5"
+        r="1.8"
+        fill="currentColor"
+        fillOpacity={0.9}
+        stroke="currentColor"
+        strokeWidth={0.5}
+      />
     </>
   ),
   bautizo: (
