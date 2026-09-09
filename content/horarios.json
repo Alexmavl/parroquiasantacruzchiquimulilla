@@ -1,0 +1,15 @@
+{
+  "misas": [
+    { "dia": "Domingo", "horas": ["7:00 a. m.", "10:00 a. m.", "6:00 p. m."], "lugar": "Templo parroquial" },
+    { "dia": "Sábado", "horas": ["6:00 p. m."], "lugar": "Templo parroquial", "nota": "Misa vespertina, vale por el domingo" },
+    { "dia": "Lunes a viernes", "horas": ["6:00 p. m."], "lugar": "Templo parroquial" }
+  ],
+  "confesiones": [
+    { "dia": "Sábado", "horas": ["4:00 a 5:30 p. m."], "lugar": "Templo parroquial" },
+    { "dia": "Todos los días", "horas": ["Media hora antes de cada misa"] }
+  ],
+  "despacho": [
+    { "dia": "Martes a viernes", "horas": ["9:00 a. m. a 1:00 p. m.", "3:00 a 6:00 p. m."], "lugar": "Casa parroquial" },
+    { "dia": "Sábado", "horas": ["9:00 a. m. a 12:00 m."], "lugar": "Casa parroquial" }
+  ]
+}

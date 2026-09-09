@@ -1,0 +1,275 @@
+# Sveltia CMS — configuración del panel de contenido (/admin).
+# Los pasos para conectar el backend de GitHub están en docs/cms-setup.md.
+
+backend:
+  name: github
+  repo: Alexmavl/parroquiasantacruzchiquimulilla
+  branch: main
+  # base_url: https://TU-WORKER.workers.dev  # URL del worker de OAuth (ver docs/cms-setup.md)
+
+# Los PDF y las imágenes que se suban desde el panel van aquí.
+media_folder: "public/documentos"
+public_folder: "/documentos"
+
+locale: es
+
+# Editor con vista previa desactivada: el sitio real es la referencia.
+editor:
+  preview: false
+
+collections:
+  # 1. Avisos -------------------------------------------------------------
+  - name: avisos
+    label: Avisos
+    label_singular: Aviso
+    description: Noticias breves. Marca "Mostrar en portada" para destacarlas en la página de inicio.
+    folder: content/avisos
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: titulo, label: Título, widget: string }
+      - {
+          name: fecha,
+          label: Fecha,
+          widget: datetime,
+          format: "YYYY-MM-DD",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+        }
+      - { name: destacado, label: Mostrar en portada, widget: boolean, default: false }
+      - { name: body, label: Cuerpo, widget: markdown }
+
+  # 2. Horarios ---------------------------------------------------------
+  - name: horarios
+    label: Horarios
+    description: Horarios de misa, confesión y despacho parroquial.
+    files:
+      - name: horarios
+        label: Horarios
+        file: content/horarios.json
+        fields:
+          - name: misas
+            label: Misas
+            widget: list
+            summary: "{{fields.dia}}"
+            fields:
+              - { name: dia, label: Día, widget: string }
+              - {
+                  name: horas,
+                  label: Horas,
+                  widget: list,
+                  field: { name: hora, label: Hora, widget: string },
+                }
+              - { name: lugar, label: Lugar, widget: string, required: false }
+              - { name: nota, label: Nota, widget: string, required: false }
+          - name: confesiones
+            label: Confesiones
+            widget: list
+            summary: "{{fields.dia}}"
+            fields:
+              - { name: dia, label: Día, widget: string }
+              - {
+                  name: horas,
+                  label: Horas,
+                  widget: list,
+                  field: { name: hora, label: Hora, widget: string },
+                }
+              - { name: lugar, label: Lugar, widget: string, required: false }
+              - { name: nota, label: Nota, widget: string, required: false }
+          - name: despacho
+            label: Despacho parroquial
+            widget: list
+            summary: "{{fields.dia}}"
+            fields:
+              - { name: dia, label: Día, widget: string }
+              - {
+                  name: horas,
+                  label: Horas,
+                  widget: list,
+                  field: { name: hora, label: Hora, widget: string },
+                }
+              - { name: lugar, label: Lugar, widget: string, required: false }
+              - { name: nota, label: Nota, widget: string, required: false }
+
+  # 3. Libros de registro --------------------------------------------
+  - name: registros
+    label: Libros de registro
+    description: >
+      Solo la cobertura de los libros (tipo, tomo y años). NUNCA nombres de personas:
+      las consultas de registros se atienden por WhatsApp.
+    files:
+      - name: libros
+        label: Cobertura de libros
+        file: content/registros/libros.json
+        fields:
+          - {
+              name: actualizado,
+              label: Actualizado el,
+              widget: datetime,
+              format: "YYYY-MM-DD",
+              date_format: "YYYY-MM-DD",
+              time_format: false,
+            }
+          - name: libros
+            label: Libros
+            widget: list
+            summary: "{{fields.tipo}} · Tomo {{fields.tomo}} ({{fields.desde}}–{{fields.hasta}})"
+            fields:
+              - {
+                  name: tipo,
+                  label: Tipo,
+                  widget: select,
+                  options: [Bautismos, Confirmaciones, Matrimonios, Defunciones],
+                }
+              - { name: tomo, label: Tomo, widget: string }
+              - { name: desde, label: Desde (año), widget: number, value_type: int, min: 1500, max: 2100 }
+              - { name: hasta, label: Hasta (año), widget: number, value_type: int, min: 1500, max: 2100 }
+          - { name: nota, label: Nota, widget: string, required: false }
+
+  # 4. Documentos ----------------------------------------------------
+  - name: documentos
+    label: Documentos
+    label_singular: Documento
+    description: >
+      No subas aquí documentos con nombres, DPI o datos de personas.
+      Los listados de folios y los libros sacramentales no se publican
+      en internet: las consultas se atienden por WhatsApp.
+    folder: content/documentos
+    create: true
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: titulo, label: Título, widget: string }
+      - { name: descripcion, label: Descripción, widget: text }
+      - { name: archivo, label: Archivo (PDF), widget: file }
+      - {
+          name: categoria,
+          label: Categoría,
+          widget: select,
+          options:
+            [Requisitos, Calendario de catequesis, Informe económico, Formularios en blanco, Otros],
+        }
+
+  # 5. Templos de las comunidades ---------------------------------
+  - name: comunidades
+    label: Templos de las comunidades
+    label_singular: Templo
+    description: Capillas y templos de las aldeas y caseríos. Cada uno con su foto, descripción y mapa.
+    folder: content/comunidades
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{fields.nombre}} — {{fields.comunidad}}"
+    sortable_fields: [orden, nombre]
+    fields:
+      - { name: nombre, label: Nombre del templo, widget: string }
+      - { name: comunidad, label: Aldea o caserío, widget: string, required: false }
+      - {
+          name: orden,
+          label: Orden en la lista,
+          widget: number,
+          required: false,
+          value_type: int,
+          default: 99,
+        }
+      - { name: direccion, label: Dirección / cómo ubicarlo, widget: string, required: false }
+      - {
+          name: misa,
+          label: Horario de misa,
+          widget: string,
+          required: false,
+          hint: "Texto libre, p. ej. 'Domingos 8:00 a. m.'",
+        }
+      - {
+          name: latitud,
+          label: Latitud,
+          widget: number,
+          required: false,
+          value_type: float,
+          hint: "Google Maps → clic derecho sobre el templo → primer número.",
+        }
+      - {
+          name: longitud,
+          label: Longitud,
+          widget: number,
+          required: false,
+          value_type: float,
+          hint: "El segundo número del clic derecho.",
+        }
+      - {
+          name: mapaEmbedUrl,
+          label: Mapa (URL para incrustar),
+          widget: string,
+          required: false,
+          hint: "Opcional. Google Maps → Compartir → Insertar un mapa → el enlace de src=\"...\".",
+        }
+      - {
+          name: foto,
+          label: Foto del templo,
+          widget: image,
+          required: false,
+          media_folder: /public/imagenes,
+          public_folder: /imagenes,
+        }
+      - { name: fotoPie, label: Pie de la foto, widget: string, required: false }
+      - { name: body, label: Descripción del lugar, widget: markdown }
+
+  # 6. Historia y datos de la parroquia -------------------------
+  - name: paginas
+    label: Parroquia
+    files:
+      - name: historia
+        label: Historia de la parroquia
+        file: content/historia.md
+        fields:
+          - { name: body, label: Contenido, widget: markdown }
+
+      - name: datos
+        label: Datos de la parroquia (portada)
+        file: content/parroquia.json
+        description: >
+          Dirección, mapa, foto del templo y redes. Lo que dejes vacío no se muestra.
+          El mapa y los botones "Cómo llegar" son gratuitos: no usan API con clave.
+        fields:
+          - { name: direccion, label: Dirección, widget: string, required: false }
+          - {
+              name: mapaEmbedUrl,
+              label: Mapa (URL para incrustar),
+              widget: string,
+              required: false,
+              hint: "En Google Maps: Compartir → Insertar un mapa → copia solo el enlace que está en src=\"...\" del código.",
+            }
+          - {
+              name: latitud,
+              label: Latitud,
+              widget: number,
+              required: false,
+              value_type: float,
+              hint: "Opcional. Da el botón directo de 'Cómo llegar'. En Google Maps, clic derecho sobre el templo → el primer número.",
+            }
+          - {
+              name: longitud,
+              label: Longitud,
+              widget: number,
+              required: false,
+              value_type: float,
+              hint: "El segundo número del clic derecho en Google Maps.",
+            }
+          - {
+              name: facebook,
+              label: Página de Facebook (URL),
+              widget: string,
+              required: false,
+            }
+          - {
+              name: foto,
+              label: Foto del templo,
+              widget: image,
+              required: false,
+              media_folder: /public/imagenes,
+              public_folder: /imagenes,
+            }
+          - { name: fotoPie, label: Pie de la foto, widget: string, required: false }

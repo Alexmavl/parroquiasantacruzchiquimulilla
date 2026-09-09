@@ -1,0 +1,12 @@
+{
+  "actualizado": "2026-02-14",
+  "libros": [
+    { "tipo": "Bautismos", "tomo": "I", "desde": 1918, "hasta": 1954 },
+    { "tipo": "Bautismos", "tomo": "II", "desde": 1954, "hasta": 1989 },
+    { "tipo": "Bautismos", "tomo": "III", "desde": 1989, "hasta": 2012 },
+    { "tipo": "Confirmaciones", "tomo": "I", "desde": 1942, "hasta": 1998 },
+    { "tipo": "Matrimonios", "tomo": "I", "desde": 1935, "hasta": 1980 },
+    { "tipo": "Matrimonios", "tomo": "II", "desde": 1980, "hasta": 2003 }
+  ],
+  "nota": "Los registros anteriores a 1918 se conservan en el archivo diocesano de Santa Rosa."
+}

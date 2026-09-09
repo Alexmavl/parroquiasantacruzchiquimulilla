@@ -1,0 +1,129 @@
+import { Menu, X } from 'lucide-react'
+import { useEffect, useState, type ReactElement } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+
+const ENLACES = [
+  { to: '/', nombre: 'Inicio', end: true },
+  { to: '/sacramentos', nombre: 'Sacramentos', end: false },
+  { to: '/horarios', nombre: 'Horarios', end: false },
+  { to: '/comunidades', nombre: 'Comunidades', end: false },
+  { to: '/registros', nombre: 'Registros', end: false },
+]
+
+export function Header(): ReactElement {
+  const [abierto, setAbierto] = useState(false)
+  const location = useLocation()
+  const [prevPathname, setPrevPathname] = useState(location.pathname)
+
+  // Cerrar menú al cambiar de ruta durante la renderización
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname)
+    setAbierto(false)
+  }
+
+  // Cerrar menú con tecla Escape
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape' && abierto) {
+        setAbierto(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [abierto])
+
+  return (
+    <header
+      data-site-header
+      className="sticky top-0 z-50 border-b-2 border-oro-500 bg-gradient-to-r from-marino-950 via-marino-900 to-marino-950 text-white shadow-md transition-all duration-300"
+    >
+      <div className="contenedor py-2.5 sm:py-3">
+        <div className="flex items-center justify-between">
+          <NavLink
+            to="/"
+            className="group flex flex-col no-underline focus-visible:outline focus-visible:outline-white"
+            onClick={() => setAbierto(false)}
+          >
+            <span className="font-serif text-xl sm:text-2xl font-normal text-white transition-colors duration-200 group-hover:text-oro-300">
+              Parroquia Santa Cruz
+            </span>
+            <span className="text-xs sm:text-sm text-marino-200 font-sans tracking-wide">
+              Chiquimulilla, Santa Rosa
+            </span>
+          </NavLink>
+
+          {/* Botón menú hamburguesa (móvil) */}
+          <button
+            type="button"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-marino-700 bg-marino-800 text-white shadow-xs transition-all duration-200 hover:bg-marino-700 hover:text-oro-300 active:scale-95 sm:hidden"
+            aria-expanded={abierto}
+            aria-controls="menu-navegacion"
+            aria-label={abierto ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            onClick={() => setAbierto((prev) => !prev)}
+          >
+            {abierto ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
+          </button>
+
+          {/* Navegación escritorio */}
+          <nav aria-label="Principal" className="hidden sm:block">
+            <ul className="flex items-center gap-1.5">
+              {ENLACES.map((e) => (
+                <li key={e.to}>
+                  <NavLink
+                    to={e.to}
+                    end={e.end}
+                    className={({ isActive }) =>
+                      [
+                        'flex min-h-10 items-center rounded-lg px-3.5 py-1.5 text-base font-medium no-underline transition-all duration-200',
+                        isActive
+                          ? 'bg-marino-800 text-oro-400 font-semibold shadow-xs border border-marino-700'
+                          : 'text-slate-200 hover:bg-marino-800/70 hover:text-white',
+                      ].join(' ')
+                    }
+                  >
+                    {e.nombre}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        {/* Navegación desplegable móvil */}
+        {abierto && (
+          <nav
+            id="menu-navegacion"
+            aria-label="Principal móvil"
+            className="mt-2.5 border-t border-marino-800/90 pt-2 pb-1 sm:hidden animate-in fade-in slide-in-from-top-2 duration-200"
+          >
+            <ul className="flex flex-col gap-1">
+              {ENLACES.map((e) => (
+                <li key={e.to}>
+                  <NavLink
+                    to={e.to}
+                    end={e.end}
+                    className={({ isActive }) =>
+                      [
+                        'flex min-h-11 items-center rounded-lg px-3.5 py-2 text-base no-underline transition-all duration-200',
+                        isActive
+                          ? 'bg-marino-800 font-semibold text-oro-400 border-l-4 border-oro-400'
+                          : 'text-slate-200 hover:bg-marino-800/80 hover:text-white',
+                      ].join(' ')
+                    }
+                    onClick={() => setAbierto(false)}
+                  >
+                    {e.nombre}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </div>
+    </header>
+  )
+}

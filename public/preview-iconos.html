@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paleta e iconos · Sitio parroquial</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --borgona-50:#fbf2f3; --borgona-500:#8e2739; --borgona-600:#6e1e2c; --borgona-700:#571724; --borgona-900:#33101a;
+    --oro-200:#f0dfa8; --oro-400:#d9ba5c; --oro-500:#c9a227; --oro-600:#a8851c;
+    --carbon-500:#6b625c; --carbon-700:#453e3a; --carbon-900:#26221f;
+    --cal-50:#faf8f6; --cal-100:#f3efea; --cal-200:#ece6df;
+    --piedra-200:#e2dad1; --piedra-400:#b8ac9f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:48px 24px 96px;background:var(--cal-50);color:var(--carbon-900);
+       font:17px/1.65 "Source Sans 3",system-ui,sans-serif}
+  .wrap{max-width:920px;margin:0 auto}
+  h1{font:400 40px/1.15 Marcellus,Georgia,serif;color:var(--borgona-600);margin:0}
+  h2{font:400 26px/1.2 Marcellus,Georgia,serif;color:var(--borgona-600);margin:64px 0 20px}
+  p{max-width:34rem;color:var(--carbon-700)}
+  .filete{height:1px;background:var(--oro-500);width:180px;margin:14px 0 28px}
+
+  .paleta{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px}
+  .tono{border-radius:8px;overflow:hidden;border:1px solid var(--piedra-200);background:#fff}
+  .tono i{display:block;height:64px}
+  .tono span{display:block;padding:8px 10px;font-size:13px;line-height:1.4}
+  .tono span b{display:block;font-weight:600}
+  .tono span em{font-style:normal;color:var(--carbon-500);font-variant-numeric:tabular-nums}
+
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px;
+           background:var(--piedra-200);border:1px solid var(--piedra-200);border-radius:8px;overflow:hidden}
+  .celda{background:var(--cal-100);padding:24px 12px;text-align:center;transition:background .3s}
+  .celda:hover{background:var(--cal-200)}
+  .celda svg{color:var(--carbon-500);transition:color .3s}
+  .celda:hover svg{color:var(--oro-500)}
+  .celda b{display:block;margin-top:12px;font-weight:600;font-size:15px}
+  .celda em{display:block;font-style:normal;font-size:13px;color:var(--carbon-500);margin-top:2px}
+
+  .oscuro{background:var(--carbon-900);border-color:var(--carbon-700)}
+  .oscuro .celda{background:var(--carbon-900);color:var(--cal-50)}
+  .oscuro .celda:hover{background:var(--carbon-800,#332e2a)}
+  .oscuro .celda svg{color:var(--piedra-400)}
+  .oscuro .celda em{color:var(--piedra-400)}
+
+  .escala{display:flex;align-items:flex-end;gap:32px;flex-wrap:wrap;padding:28px;
+          background:var(--cal-100);border-radius:8px;color:var(--borgona-600)}
+  .escala figure{margin:0;text-align:center}
+  .escala figcaption{margin-top:10px;font-size:13px;color:var(--carbon-500)}
+
+  .nota{border-left:2px solid var(--oro-500);padding:4px 0 4px 16px;margin:24px 0;
+        color:var(--carbon-700);font-size:15px;max-width:34rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Paleta e iconos litúrgicos</h1>
+  <div class="filete"></div>
+  <p>Vista previa de los tokens y del set propio de ocho iconos. Pasa el cursor sobre cualquier icono para ver el comportamiento definido para las tarjetas de sacramento: el trazo pasa de carbón a oro, sin elevación ni escala.</p>
+
+  <h2>Color</h2>
+  <div class="paleta">
+    <div class="tono"><i style="background:#6e1e2c"></i><span><b>borgona-600</b><em>#6E1E2C</em></span></div>
+    <div class="tono"><i style="background:#8e2739"></i><span><b>borgona-500</b><em>#8E2739</em></span></div>
+    <div class="tono"><i style="background:#571724"></i><span><b>borgona-700</b><em>#571724</em></span></div>
+    <div class="tono"><i style="background:#c9a227"></i><span><b>oro-500</b><em>#C9A227</em></span></div>
+    <div class="tono"><i style="background:#a8851c"></i><span><b>oro-600</b><em>#A8851C</em></span></div>
+    <div class="tono"><i style="background:#f0dfa8"></i><span><b>oro-200</b><em>#F0DFA8</em></span></div>
+    <div class="tono"><i style="background:#26221f"></i><span><b>carbon-900</b><em>#26221F</em></span></div>
+    <div class="tono"><i style="background:#6b625c"></i><span><b>carbon-500</b><em>#6B625C</em></span></div>
+    <div class="tono"><i style="background:#faf8f6"></i><span><b>cal-50</b><em>#FAF8F6</em></span></div>
+    <div class="tono"><i style="background:#f3efea"></i><span><b>cal-100</b><em>#F3EFEA</em></span></div>
+    <div class="tono"><i style="background:#e2dad1"></i><span><b>piedra-200</b><em>#E2DAD1</em></span></div>
+    <div class="tono"><i style="background:#b8ac9f"></i><span><b>piedra-400</b><em>#B8AC9F</em></span></div>
+  </div>
+
+  <div class="nota"><b>oro-500 no cumple AA sobre fondo claro</b> (3.0:1). Úsalo solo para filetes, bordes e iconografía. Para texto de acento sobre cal, oro-600 (4.6:1).</div>
+
+  <h2>Iconos sobre superficie clara</h2>
+  <div class="rejilla" id="claro"></div>
+
+  <h2>Iconos sobre carbón</h2>
+  <div class="rejilla oscuro" id="oscuro"></div>
+
+  <h2>Escala</h2>
+  <div class="escala" id="escala"></div>
+
+</div>
+
+<script>
+const ICONOS = {
+  "Bautizo": ["concha con gotas", `
+    <path d="M4.5 12.5a7.5 7.5 0 0 1 15 0z"/>
+    <path d="M12 12.5 6.7 7.2M12 12.5V5m0 7.5 5.3-5.3"/>
+    <path d="M7.5 15.5c-.7.9-1.1 1.5-1.1 2a1.1 1.1 0 0 0 2.2 0c0-.5-.4-1.1-1.1-2z"/>
+    <path d="M12 16c-.7.9-1.1 1.5-1.1 2a1.1 1.1 0 0 0 2.2 0c0-.5-.4-1.1-1.1-2z"/>
+    <path d="M16.5 15.5c-.7.9-1.1 1.5-1.1 2a1.1 1.1 0 0 0 2.2 0c0-.5-.4-1.1-1.1-2z"/>`],
+  "Primera comunión": ["cáliz con hostia", `
+    <circle cx="12" cy="5" r="2.2"/>
+    <path d="m14.3 2.7.7-.7m-5.3.7-.7-.7M15.2 5h1M8.8 5h-1"/>
+    <path d="M7.5 9.5a4.5 4.5 0 0 0 9 0z"/>
+    <path d="M12 14v6.5M10.5 17h3M8.5 20.5h7"/>`],
+  "Confirmación": ["paloma y llama", `
+    <path d="M12 2.2c1.2 1.3 1.9 2.1 1.9 3a1.9 1.9 0 0 1-3.8 0c0-.9.7-1.7 1.9-3z"/>
+    <circle cx="14.2" cy="9.6" r="1.6"/>
+    <path d="m15.8 9.6 1.8.6"/>
+    <path d="M13 10.8C11.2 13 9.4 15.4 8 18"/>
+    <path d="M13.8 11.2c2-.4 4.4.2 5.8 1.8-2 .9-4.4.8-6.4 0"/>
+    <path d="m8 18-2.4 2.4M8 18l1.6 2.8"/>`],
+  "Matrimonio": ["anillos y cruz", `
+    <path d="M12 2v6.4M9.4 4.4h5.2"/>
+    <circle cx="9.5" cy="14.5" r="4.8"/>
+    <circle cx="14.5" cy="14.5" r="4.8"/>`],
+  "Confesión": ["estola cruzada", `
+    <path d="M7.6 3c1 5 3.4 9.5 6.8 16.2"/>
+    <path d="M16.4 3c-1 5-3.4 9.5-6.8 16.2"/>
+    <path d="m13.4 19.9 2.4-1M8.2 18.9l2.4 1"/>`],
+  "Unción": ["vasija de óleo", `
+    <path d="M12 2.5c1 1.1 1.6 1.8 1.6 2.5a1.6 1.6 0 0 1-3.2 0c0-.7.6-1.4 1.6-2.5z"/>
+    <path d="M9.5 8h5"/><path d="M10.2 8v2M13.8 8v2"/>
+    <path d="M10.2 10c-2.2.8-3.4 2.8-3.4 5"/>
+    <path d="M13.8 10c2.2.8 3.4 2.8 3.4 5"/>
+    <path d="M6.8 15a5.2 5.2 0 0 0 10.4 0"/>
+    <path d="M12 13.5v4M10 15.5h4"/>`],
+  "Catequesis": ["libro y cruz", `
+    <path d="M12 1.8v4.8M9.6 3.9h4.8"/>
+    <path d="M12 9.5C10.6 8.4 8.6 7.9 6 7.9H3.2V19h3.2c2.2 0 4.1.5 5.6 1.6"/>
+    <path d="M12 9.5c1.4-1.1 3.4-1.6 6-1.6h2.8V19h-3.2c-2.2 0-4.1.5-5.6 1.6"/>
+    <path d="M12 9.5v11.1"/>`],
+  "Plan pastoral": ["báculo", `
+    <path d="M9.5 21V9.5"/>
+    <path d="M9.5 9.5a4 4 0 0 1 8 0 2.3 2.3 0 0 1-4.6 0"/>`]
+};
+
+const svg = (paths, size) =>
+  `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+
+for (const id of ["claro","oscuro"]) {
+  document.getElementById(id).innerHTML = Object.entries(ICONOS)
+    .map(([n,[d,p]]) => `<div class="celda">${svg(p,40)}<b>${n}</b><em>${d}</em></div>`).join("");
+}
+
+document.getElementById("escala").innerHTML = [20,24,32,48,72]
+  .map(s => `<figure>${svg(ICONOS["Primera comunión"][1], s)}<figcaption>${s}px</figcaption></figure>`).join("");
+</script>
+</body>
+</html>
