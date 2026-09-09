@@ -40,3 +40,35 @@ export function IconoFacebook({ size = 20, className }: Props): ReactElement {
     </svg>
   )
 }
+
+export function IconoGoogleMaps({ size = 20, className }: Props): ReactElement {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+    </svg>
+  )
+}
+
+export function IconoWaze({ size = 20, className }: Props): ReactElement {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
+      <path d="M19.34 9.07a7.28 7.28 0 0 0-3.57-4.88 7.42 7.42 0 0 0-7.85.51A7.32 7.32 0 0 0 4.7 10a4.34 4.34 0 0 0-2.6 3.93 4.39 4.39 0 0 0 4.29 4.37h.18a2.56 2.56 0 0 0 2.47 1.87 2.57 2.57 0 0 0 2.53-2.12h1.69a2.57 2.57 0 0 0 2.53 2.12 2.56 2.56 0 0 0 2.47-1.87 4.93 4.93 0 0 0 3.8-4.75 6.94 6.94 0 0 0-2.72-4.48zm-10.42 8.6a1.07 1.07 0 1 1 1.07-1.07 1.07 1.07 0 0 1-1.07 1.07zm6.69 0a1.07 1.07 0 1 1 1.07-1.07 1.07 1.07 0 0 1-1.07 1.07zm2.46-3.88a3.42 3.42 0 0 1-2.46 1.01h-.25a2.53 2.53 0 0 0-2.28-1.44 2.53 2.53 0 0 0-2.28 1.44H9.27a2.53 2.53 0 0 0-2.28-1.44 2.53 2.53 0 0 0-2.28 1.44H4.53a2.89 2.89 0 0 1-2.83-2.88 2.84 2.84 0 0 1 1.83-2.68l.58-.23-.09-.62A5.82 5.82 0 0 1 6.64 5.9a5.92 5.92 0 0 1 6.27-.41 5.8 5.8 0 0 1 2.85 3.89l.13.62.62.13a5.45 5.45 0 0 1 3.56 3.66zM9.54 9.17a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44zm5.75 0a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z" />
+    </svg>
+  )
+}
