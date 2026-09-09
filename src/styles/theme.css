@@ -336,22 +336,20 @@
     color: var(--color-carbon-500);
   }
 
-  /* Animación de transición de página (venir desde el fondo con zoom sutil y opacidad) */
+  /* Animación de transición de página (venir desde el fondo con zoom sutil sin desenfoque) */
   .animacion-pagina {
-    animation: venirDelFondo 380ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: venirDelFondo 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
     will-change: transform, opacity;
   }
 
   @keyframes venirDelFondo {
     0% {
-      opacity: 0;
-      transform: scale(0.96) translateY(12px);
-      filter: blur(4px);
+      opacity: 0.6;
+      transform: scale(0.985) translateY(6px);
     }
     100% {
       opacity: 1;
       transform: scale(1) translateY(0);
-      filter: blur(0);
     }
   }
 }

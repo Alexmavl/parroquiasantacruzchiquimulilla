@@ -107,8 +107,8 @@ export function Header(): ReactElement {
                       [
                         'relative flex min-h-10 items-center rounded-lg px-3.5 py-1.5 text-base font-medium no-underline transition-all duration-200',
                         isActive
-                          ? 'bg-marino-800 text-oro-300 font-semibold shadow-xs border border-marino-700/80 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-gradient-to-r after:from-oro-500 after:via-oro-300 after:to-oro-500 after:rounded-full after:shadow-[0_0_8px_rgba(250,204,21,0.8)]'
-                          : 'text-slate-200 hover:bg-marino-800/70 hover:text-white',
+                          ? 'bg-marino-800 text-white font-semibold shadow-xs border border-marino-700/80 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-gradient-to-r after:from-oro-400 after:via-oro-300 after:to-oro-400 after:rounded-full after:shadow-[0_0_8px_rgba(250,204,21,0.9)]'
+                          : 'text-slate-100 hover:bg-marino-800/70 hover:text-white',
                       ].join(' ')
                     }
                   >
@@ -137,8 +137,8 @@ export function Header(): ReactElement {
                       [
                         'flex min-h-11 items-center rounded-lg px-3.5 py-2 text-base no-underline transition-all duration-200',
                         isActive
-                          ? 'bg-marino-800 font-semibold text-oro-300 border-l-4 border-oro-400 shadow-[inset_4px_0_12px_rgba(234,179,8,0.15)]'
-                          : 'text-slate-200 hover:bg-marino-800/80 hover:text-white',
+                          ? 'bg-marino-800 font-semibold text-white border-l-4 border-oro-400 shadow-[inset_4px_0_12px_rgba(234,179,8,0.15)]'
+                          : 'text-slate-100 hover:bg-marino-800/80 hover:text-white',
                       ].join(' ')
                     }
                     onClick={() => setAbierto(false)}
