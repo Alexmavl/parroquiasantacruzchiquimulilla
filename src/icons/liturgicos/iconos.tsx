@@ -21,43 +21,38 @@ export type SlugIcono =
 export const ICONOS_POR_SLUG: Record<SlugIcono, ReactNode> = {
   cruz: (
     <>
-      {/* Resplandor / destellos de fondo */}
-      <path
-        d="M12 4.5l1.2 2.8 2.8 1.2-2.8 1.2L12 12.5l-1.2-2.8L8 8.5l2.8-1.2z"
+      {/* Resplandor y rayos de luz que emanan de la cruz */}
+      <circle
+        cx="12"
+        cy="9"
+        r="7.5"
         fill="currentColor"
-        fillOpacity={0.15}
+        fillOpacity={0.12}
         stroke="none"
       />
       <path
-        d="M6 2.5l6 6M18 2.5l-6 6M6 14.5l6-6M18 14.5l-6-6"
+        d="M12 2.5v2.5M12 15.5v2.5M5.5 9h2.5M16 9h2.5M7.5 4.5l1.8 1.8M16.5 13.5l-1.8-1.8M16.5 4.5l-1.8 1.8M7.5 13.5l1.8-1.8"
         stroke="currentColor"
-        strokeWidth={1}
-        strokeOpacity={0.45}
-        strokeDasharray="1 2.5"
-      />
-      {/* Cuerpo principal de la Santa Cruz */}
-      <path
-        d="M12 1.5v21M4.5 8.5h15"
-        stroke="currentColor"
-        strokeWidth={2}
+        strokeWidth={1.2}
         strokeLinecap="round"
+        strokeOpacity={0.4}
       />
-      {/* Remates ornamentales en los extremos */}
+      {/* Cruz Latina limpia y pura (sin remates en las puntas) */}
       <path
-        d="M9.5 1.5h5M9.5 22.5h5M4.5 6v5M19.5 6v5"
+        d="M12 2v20M5 9h14"
         stroke="currentColor"
-        strokeWidth={1.5}
+        strokeWidth={2.5}
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      {/* Resplandor central */}
+      {/* Núcleo de resplandor central */}
       <circle
         cx="12"
-        cy="8.5"
-        r="1.8"
+        cy="9"
+        r="1.7"
         fill="currentColor"
-        fillOpacity={0.9}
-        stroke="currentColor"
-        strokeWidth={0.5}
+        fillOpacity={0.85}
+        stroke="none"
       />
     </>
   ),
