@@ -11,17 +11,53 @@ interface Props {
   id: string
 }
 
+const ICONOS_POR_ID = {
+  misas: Calendar,
+  confesiones: HeartHandshake,
+  despacho: Building2,
+} as const
+
 function getIconoPorId(id: string): ReactElement {
-  switch (id) {
-    case 'misas':
-      return <Calendar aria-hidden="true" size={24} className="text-oro-500 shrink-0" />
-    case 'confesiones':
-      return <HeartHandshake aria-hidden="true" size={24} className="text-oro-500 shrink-0" />
-    case 'despacho':
-      return <Building2 aria-hidden="true" size={24} className="text-oro-500 shrink-0" />
-    default:
-      return <Clock aria-hidden="true" size={24} className="text-oro-500 shrink-0" />
-  }
+  const Icono = ICONOS_POR_ID[id as keyof typeof ICONOS_POR_ID] ?? Clock
+  return <Icono aria-hidden="true" size={24} className="text-oro-500 shrink-0" />
+}
+
+function TarjetaDia({ bloque: b }: { bloque: Bloque }): ReactElement {
+  return (
+    <li className="flex flex-col justify-between gap-1.5 rounded-lg border border-marino-100/70 bg-white p-2.5 sm:p-3 shadow-2xs transition-colors duration-150 hover:border-marino-200 hover:bg-white">
+      <div className="flex items-center justify-between gap-2">
+        <span className="font-semibold text-marino-900 text-xs sm:text-sm flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-marino-500" />
+          {b.dia}
+        </span>
+        {b.lugar && (
+          <span className="aux text-[11px] font-medium text-marino-700 bg-marino-50 px-2 py-0.5 rounded border border-marino-100/60">
+            {b.lugar}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+        {b.horas.length > 0 ? (
+          b.horas.map((h) => (
+            <span
+              key={h}
+              className="inline-flex items-center gap-1 rounded-md bg-marino-100/80 px-2 py-0.5 text-xs font-semibold tabular-nums text-marino-900"
+            >
+              <Clock aria-hidden="true" size={11} className="text-marino-600" />
+              {h}
+            </span>
+          ))
+        ) : (
+          <span className="text-xs text-carbon-500">{b.nota ?? '—'}</span>
+        )}
+      </div>
+
+      {b.horas.length > 0 && b.nota && (
+        <span className="aux text-[11px] text-carbon-500 italic">({b.nota})</span>
+      )}
+    </li>
+  )
 }
 
 /**
@@ -50,42 +86,7 @@ export function TablaHorarios({
       </h3>
       <ul className="grid gap-2 sm:grid-cols-2">
         {bloques.map((b) => (
-          <li
-            key={b.dia}
-            className="flex flex-col justify-between gap-1.5 rounded-lg border border-marino-100/70 bg-white p-2.5 sm:p-3 shadow-2xs transition-colors duration-150 hover:border-marino-200 hover:bg-white"
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span className="font-semibold text-marino-900 text-xs sm:text-sm flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-marino-500" />
-                {b.dia}
-              </span>
-              {b.lugar && (
-                <span className="aux text-[11px] font-medium text-marino-700 bg-marino-50 px-2 py-0.5 rounded border border-marino-100/60">
-                  {b.lugar}
-                </span>
-              )}
-            </div>
-
-            <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-              {b.horas.length > 0 ? (
-                b.horas.map((h) => (
-                  <span
-                    key={h}
-                    className="inline-flex items-center gap-1 rounded-md bg-marino-100/80 px-2 py-0.5 text-xs font-semibold tabular-nums text-marino-900"
-                  >
-                    <Clock aria-hidden="true" size={11} className="text-marino-600" />
-                    {h}
-                  </span>
-                ))
-              ) : (
-                <span className="text-xs text-carbon-500">{b.nota ?? '—'}</span>
-              )}
-            </div>
-
-            {b.horas.length > 0 && b.nota && (
-              <span className="aux text-[11px] text-carbon-500 italic">({b.nota})</span>
-            )}
-          </li>
+          <TarjetaDia key={b.dia} bloque={b} />
         ))}
       </ul>
     </section>
