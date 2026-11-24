@@ -24,13 +24,9 @@ export const parroquia = ParroquiaSchema.parse(parroquiaRaw)
  */
 export function resolveAsset(path?: string): string | undefined {
   if (!path) return undefined
-  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
-    return path
-  }
-  const base = import.meta.env.BASE_URL || '/'
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path
-  const cleanBase = base.endsWith('/') ? base : `${base}/`
-  return `${cleanBase}${cleanPath}`
+  if (/^(https?:\/\/|data:)/.test(path)) return path
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')
+  return `${base}${path.replace(/^\//, '')}`
 }
 
 export interface DatosUbicacion {
