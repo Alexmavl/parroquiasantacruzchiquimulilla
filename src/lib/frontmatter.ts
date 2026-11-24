@@ -12,7 +12,7 @@ function coerce(bruto: string): string | number | boolean {
   const v = bruto.trim().replace(/^["']|["']$/g, '')
   if (v === 'true') return true
   if (v === 'false') return false
-  if (v !== '' && /^-?\d+(\.\d+)?$/.test(v)) return Number(v)
+  if (/^-?\d+(\.\d+)?$/.test(v)) return Number(v)
   return v
 }
 
@@ -21,9 +21,9 @@ export function parseFrontmatter(texto: string): Frontmatter {
   if (!m) return { data: {}, body: texto.trim() }
 
   const data: Record<string, string | number | boolean> = {}
-  for (const linea of (m[1] ?? '').split('\n')) {
+  for (const linea of m[1].split('\n')) {
     const par = /^([\w-]+):\s*(.*)$/.exec(linea.trim())
-    if (par && par[1]) data[par[1]] = coerce(par[2] ?? '')
+    if (par) data[par[1]] = coerce(par[2])
   }
-  return { data, body: (m[2] ?? '').trim() }
+  return { data, body: m[2].trim() }
 }
