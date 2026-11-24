@@ -5,13 +5,16 @@
   "type": "module",
   "packageManager": "pnpm@10.0.0",
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "scripts": {
     "dev": "vite-react-ssg dev",
     "build": "pnpm run validar-contenido && vite-react-ssg build",
     "preview": "vite preview",
     "test": "vitest run",
+    "coverage": "vitest run --coverage",
     "typecheck": "tsc -b --noEmit",
     "lint": "oxlint",
     "validar-contenido": "tsx scripts/validar-contenido.ts"
@@ -32,6 +35,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "oxlint": "^1.79.0",
     "tailwindcss": "^4.1.13",
     "tsx": "^4.20.4",

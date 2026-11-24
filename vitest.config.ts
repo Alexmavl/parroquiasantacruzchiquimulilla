@@ -8,5 +8,12 @@ export default defineConfig({
       VITE_WHATSAPP: '50200000000',
       VITE_TELEFONO: '50200000000',
     },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+      reportsDirectory: 'coverage',
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/**/*.test.{ts,tsx}', 'src/main.tsx'],
+    },
   },
 })
