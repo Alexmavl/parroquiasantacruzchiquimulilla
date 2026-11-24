@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.metrics
+target
 *.local
 
 # Variables de entorno (usar .env.example como plantilla)
